@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+function err() {
+  echo "[ERROR] $1" >&2
+  exit 1
+}
+
+function smitty() {
+  echo "[INFO] $@"
+  $@
+}
+
+git remote -v | grep upstream &> /dev/null || smitty git remote add upstream git@github.com:ISEexchange/tftp
+smitty bundle update 2> /dev/null || smitty bundle install --path=~/.bundle
