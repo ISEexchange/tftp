@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+echo "===> Bundling..."
+script/bootstrap
+
+echo "===> Building..."
+pushd src/ 2> /dev/null
+docker build --rm -t jumanjiman/tftp .
+popd 2> /dev/null
+
+echo "===> Running rspec"
+bundle exec rake rubocop
+bundle exec rake spec

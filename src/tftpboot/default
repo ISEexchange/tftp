@@ -1,0 +1,45 @@
+serial 0 115200
+console 1
+default safe
+prompt 1
+timeout 200
+totaltimeout 600
+display F1.msg
+F1 F1.msg
+
+label safe
+  localboot 0
+
+label coreos
+  kernel coreos/coreos_production_pxe.vmlinuz
+  append initrd=coreos/coreos_production_pxe_image.cpio.gz root=squashfs: state=tmpfs: sshkey="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAyc0e+WI8MVZIQKEztgC8EdWJzXgm2XyrRd2Q3HsOXdDtjtAHf5VGpxqTx4+CI+ibXlP8LwrqOmVuNzwvVF8yO20WR+GLvqKLT0U7bx+2PxXbBtxJJhAAqHWSE4syv3wxLuuaMhnbFUEKotbb3NTjQ0JqEZtc4f6YVPow2IrF/dOGiRocS9eX8ASh2jShU4SJpyheKjZ3EavETYgQyRPUDykTvRbmBBwNNV3amXxaLOB17ZZ7FKOX4SbpZVHkYjzahY9PT6FEly6dWs5MPKBHQsUm86IKJ7Ua3LVPcnP6wkUtgKsWMLwGL4DOLuBax9avyHTwYo89k484nAQjHxONrQ== pubkey" console=tty0 console=ttyS0
+
+label rhel-rescue
+  kernel rhel-server-6.5-x86_64-dvd/vmlinuz
+  append initrd=rhel-server-6.5-x86_64-dvd/initrd.img rescue serial console=ttyS0,115200 text ip=dhcp nomount lang=en_US.utf8 utf8 method=http://KS.FQDN/rhel-server-6.5-x86_64-dvd
+  ipappend 2
+
+label rhel-5.5
+  kernel rhel-server-5.5-x86_64-dvd/vmlinuz
+  append initrd=rhel-server-5.5-x86_64-dvd/initrd.img ksdevice=bootif kssendmac console=ttyS0,115200 serial text lang=en_US.utf8 utf8 ks=http://KS.FQDN/ks/install-rhel-5.5-ks.cfg
+  ipappend 2
+
+label rhel-5.7-32
+  kernel rhel-server-5.7-i386-dvd/vmlinuz
+  append initrd=rhel-server-5.7-i386-dvd/initrd.img ksdevice=bootif kssendmac console=ttyS0,115200 serial text lang=en_US.utf8 utf8 ks=http://KS.FQDN/ks/rhel-5.7-i386-ks.cfg
+  ipappend 2
+
+label rhel-6.3
+  kernel rhel-server-6.3-x86_64-dvd/vmlinuz
+  append initrd=rhel-server-6.3-x86_64-dvd/initrd.img ks=http://KS.FQDN/ks/rhel-6.3-64-ks.cfg ksdevice=bootif kssendmac text lang=en_US.utf8 utf8
+  ipappend 2
+
+label rhel-6.5
+  kernel rhel-server-6.5-x86_64-dvd/vmlinuz
+  append initrd=rhel-server-6.5-x86_64-dvd/initrd.img ksdevice=bootif kssendmac console=ttyS0,115200 serial text lang=en_US.utf8 utf8 ks=http://KS.FQDN/cgi-bin/managed-ks.cfg?dist=6.5
+  ipappend 2
+
+label windows
+  kernel memdisk
+  append iso raw initrd=windows/WinPE_x86.iso
+  ipappend 1
