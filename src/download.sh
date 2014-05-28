@@ -1,6 +1,6 @@
 #!/bin/bash
 
-coreos_version="298.0.0"
+coreos_version="beta"
 
 coreos="
 http://storage.core-os.net/coreos/amd64-usr/${coreos_version}/coreos_production_pxe.vmlinuz
