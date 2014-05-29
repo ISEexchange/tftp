@@ -5,6 +5,7 @@ describe 'tftpd' do
   before :all do
     @cid = `docker run -d -p 69:69/udp -e FQDN=KS.FQDN jumanjiman/tftp`
     @cid.chomp!
+    sleep 5 # allow time for tftpd to stabilize
     ip = `ip route get 8.8.8.8 | awk '/src/{print $NF}'`
     @tftp = Net::TFTP.new(ip)
   end
