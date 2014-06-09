@@ -52,4 +52,18 @@ describe 'tftpd' do
     dst_md5 = Digest::MD5.hexdigest(File.read(dst_path))
     src_md5.should eql dst_md5
   end
+
+  it 'container should serve coreos alpha' do
+    src_path = 'coreos/alpha/coreos_production_pxe.vmlinuz'
+    dst_path = File.join(Dir.tmpdir, 'coreos.alpha')
+    result = @tftp.getbinaryfile(src_path, dst_path)
+    result.should be_truthy
+  end
+
+  it 'container should serve coreos beta' do
+    src_path = 'coreos/beta/coreos_production_pxe.vmlinuz'
+    dst_path = File.join(Dir.tmpdir, 'coreos.beta')
+    result = @tftp.getbinaryfile(src_path, dst_path)
+    result.should be_truthy
+  end
 end

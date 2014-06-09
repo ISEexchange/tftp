@@ -51,6 +51,8 @@ Test harness
       host must support tftp connection tracking
       container should serve pxelinux.0
       container should serve pxelinux.cfg/default
+      container should serve coreos alpha
+      container should serve coreos beta
 
     users with interactive shells
       should only include "root" and "user"

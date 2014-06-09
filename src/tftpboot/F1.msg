@@ -1,7 +1,8 @@
 Choose a kickstart:
 
  [ safe              ] boot from local disk
- [ coreos            ] PXE-boot CoreOS
+ [ coreos_alpha      ] PXE-boot CoreOS Alpha
+ [ coreos_beta       ] PXE-boot CoreOS Beta
  [ rhel-rescue       ] rescue RHEL
  [ rhel-5.5          ] install RHEL 5.5 64-bit
  [ rhel-5.7-32       ] install RHEL 5.7 32-bit
