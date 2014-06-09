@@ -8,9 +8,15 @@ require 'pp'
 require 'net/tftp'
 
 RSpec.configure do |c|
-  c.mock_with 'mocha'
+  c.mock_with :mocha
   c.color = true
   c.formatter = 'doc'
+
+  # Allow both "should" and "expect" syntax.
+  # https://www.relishapp.com/rspec/rspec-expectations/docs/syntax-configuration
+  c.expect_with :rspec do |e|
+    e.syntax = [:should, :expect]
+  end
 
   # Fail overall as soon as first test fails.
   # Fail fast to reduce duration of test runs.

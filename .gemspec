@@ -1,3 +1,10 @@
+# @see http://www.devalot.com/articles/2012/04/gem-versions.html
+# for a good description of gem version specs.
+#
+# Use range operators for clarity.
+# In general, use the range version operators (<, >, <=, >=)
+# instead of the pessimistic version operator (~>) when possible.
+#
 require 'English'
 Gem::Specification.new do |gem|
   gem.name          = 'tftp container test suite'
@@ -14,15 +21,15 @@ Gem::Specification.new do |gem|
   # Leave at zero
   gem.version       = '0.0.0'
 
-  gem.add_development_dependency 'docker-api'
+  gem.add_development_dependency 'docker-api', '>= 1.11'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'minitest'
   gem.add_development_dependency 'mocha'
   gem.add_development_dependency 'rspec-core'
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec', '>= 3.0', '<= 4.0'
   gem.add_development_dependency 'rspec-expectations'
   gem.add_development_dependency 'rspec-mocks'
-  gem.add_development_dependency 'rubocop'
+  gem.add_development_dependency 'rubocop', '>= 0.23.0'
   gem.add_development_dependency 'friction'
   gem.add_development_dependency 'net-tftp'
 end

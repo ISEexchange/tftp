@@ -18,13 +18,13 @@ describe 'tftpd' do
 
   it 'host must support tftp nat' do
     result = system('lsmod | grep nf_nat_tftp &> /dev/null')
-    result.should be_true
+    result.should be_truthy
   end
 
   it 'container should serve pxelinux.0' do
     dst_path = File.join(Dir.tmpdir, 'pxelinux.0')
     result = @tftp.getbinaryfile('pxelinux.0', dst_path)
-    result.should be_true
+    result.should be_truthy
   end
 
   it 'container should serve pxelinux.cfg/default' do
@@ -34,7 +34,7 @@ describe 'tftpd' do
     )
 
     result = @tftp.getbinaryfile('pxelinux.cfg/default', dst_path)
-    result.should be_true
+    result.should be_truthy
 
     src_md5 = Digest::MD5.hexdigest(File.read(src_path))
     dst_md5 = Digest::MD5.hexdigest(File.read(dst_path))
