@@ -8,6 +8,13 @@ describe 'tftpd' do
     sleep 5 # allow time for tftpd to stabilize
     ip = `ip route get 8.8.8.8 | awk '/src/{print $NF}'`
     @tftp = Net::TFTP.new(ip)
+    @tftp.timeout = 30
+
+    modules = %w(
+      nf_nat_tftp
+      nf_conntrack_tftp
+    )
+    modules.each { |mod| `sudo modprobe #{mod}` }
   end
 
   after :all do
@@ -17,7 +24,12 @@ describe 'tftpd' do
   end
 
   it 'host must support tftp nat' do
-    result = system('lsmod | grep nf_nat_tftp &> /dev/null')
+    result = system('lsmod | grep -q nf_nat_tftp')
+    result.should be_truthy
+  end
+
+  it 'host must support tftp connection tracking' do
+    result = system('lsmod | grep -q nf_conntrack_tftp')
     result.should be_truthy
   end
 
