@@ -8,6 +8,7 @@ function download_coreos() {
   http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe.vmlinuz
   http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe_image.cpio.gz
   http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe.DIGESTS.asc
+  http://storage.core-os.net/coreos/amd64-usr/${version}/version.txt
   "
 
   mkdir -p /tftpboot/coreos/$version &> /dev/null
@@ -15,6 +16,11 @@ function download_coreos() {
   for file in $coreos_files; do
     wget $file
   done
+
+  # Read variables so we can update F1.msg with exact version.
+  source version.txt
+  cd /tftpboot/
+  sed -i "s/\(CoreOS ${version^}\)/& $COREOS_VERSION/" F1.msg
 }
 
 coreos_versions="

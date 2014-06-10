@@ -53,6 +53,8 @@ Test harness
       container should serve pxelinux.cfg/default
       container should serve coreos alpha
       container should serve coreos beta
+      pxe menu is available
+      pxe menu shows coreos version
 
     users with interactive shells
       should only include "root" and "user"

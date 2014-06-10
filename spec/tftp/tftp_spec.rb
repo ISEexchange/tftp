@@ -66,4 +66,19 @@ describe 'tftpd' do
     result = @tftp.getbinaryfile(src_path, dst_path)
     result.should be_truthy
   end
+
+  it 'pxe menu is available' do
+    src_path = 'F1.msg'
+    dst_path = File.join(Dir.tmpdir, 'F1.msg')
+    result = @tftp.getbinaryfile(src_path, dst_path)
+    result.should be_truthy
+  end
+
+  it 'pxe menu shows coreos version' do
+    path = File.join(Dir.tmpdir, 'F1.msg')
+    # rubocop:disable LineLength
+    result = system("egrep -q 'CoreOS Alpha [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' #{path}")
+    # rubocop:enable LineLength
+    result.should be_truthy
+  end
 end
