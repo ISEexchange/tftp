@@ -1,6 +1,8 @@
 #!/bin/bash
 
-FQDN=${FQDN:ks.example.com}
+# http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+FQDN=${FQDN:-ks.example.com}
+
 cat /tftpboot/default > /tftpboot/pxelinux.cfg/default
 sed -i "s/KS\.FQDN/${FQDN}/g" /tftpboot/pxelinux.cfg/default
 
