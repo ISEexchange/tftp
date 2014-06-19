@@ -14,13 +14,14 @@ Alternatively, create `/etc/systemd/system/tftp.service` with:
 [Unit]
 Description=TFTP Server
 After=docker.service
-Require=docker.service
+Requires=docker.service
 
 [Service]
-ExecStartPre=modprobe nf_conntrack_tftp
-ExecStartPre=modprobe nf_nat_tftp
-ExecStart=/bin/bash -c '/usr/bin/docker start -a tftp || /usr/bin/docker run -d --name tftp -p 69:69/udp -h tftp.example.com -e FQDN=ks.example.com jumanjiman/tftp'
-ExecStop=/usr/bin/docker stop tftp
+ExecStartPre=/usr/sbin/modprobe nf_conntrack_tftp
+ExecStartPre=/usr/sbin/modprobe nf_nat_tftp
+ExecStartPre=/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'
+ExecStart=/usr/bin/docker run --rm --name %n -p 69:69/udp -h tftp.example.com -e FQDN=ks.example.com jumanjiman/tftp
+ExecStop=/usr/bin/docker stop %n
 RestartSec=5s
 Restart=always
 
