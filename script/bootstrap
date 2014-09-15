@@ -11,5 +11,5 @@ function smitty() {
   $@
 }
 
-git remote -v | grep upstream &> /dev/null || smitty git remote add upstream git@github.com:ISEexchange/tftp
+git remote -v | grep upstream &> /dev/null || smitty git remote add upstream https://github.com/ISEexchange/tftp.git
 smitty bundle update 2> /dev/null || smitty bundle install --path=~/.bundle
