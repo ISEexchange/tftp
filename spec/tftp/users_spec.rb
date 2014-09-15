@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe 'users with interactive shells' do
   before :all do
-    @dr = 'docker run --rm -i -t jumanjiman/tftp'
+    @dr = 'docker run --rm -t jumanjiman/tftp'
   end
 
   it 'should only include "root" and "user"' do
