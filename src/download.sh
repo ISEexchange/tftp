@@ -4,11 +4,17 @@ set -e
 function download_coreos() {
   version=$1
 
+  if [[ $version = "current" ]]; then
+    baseurl="http://stable.release.core-os.net/amd64-usr"
+  else
+    baseurl="http://storage.core-os.net/coreos/amd64-usr"
+  fi
+
   coreos_files="
-  http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe.vmlinuz
-  http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe_image.cpio.gz
-  http://storage.core-os.net/coreos/amd64-usr/${version}/coreos_production_pxe.DIGESTS.asc
-  http://storage.core-os.net/coreos/amd64-usr/${version}/version.txt
+  ${baseurl}/${version}/coreos_production_pxe.vmlinuz
+  ${baseurl}/${version}/coreos_production_pxe_image.cpio.gz
+  ${baseurl}/${version}/coreos_production_pxe.DIGESTS.asc
+  ${baseurl}/${version}/version.txt
   "
 
   mkdir -p /tftpboot/coreos/$version &> /dev/null
@@ -26,6 +32,7 @@ function download_coreos() {
 coreos_versions="
 alpha
 beta
+current
 "
 
 for version in $coreos_versions; do
