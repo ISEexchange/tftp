@@ -1,6 +1,9 @@
 box: wercker-labs/docker
 build:
   steps:
+    - script:
+        name: show os release
+        code: cat /etc/os-release
     - install-packages:
         packages: ruby2.0 ruby2.0-dev lxc-docker=1.2.0
     - script:
