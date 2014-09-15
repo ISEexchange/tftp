@@ -22,7 +22,7 @@ describe 'jumanjiman/tftp' do
 
   describe 'docker' do
     before :each do
-      @config = @image.json['config']
+      @config = @image.json['config'] || @image.json['ContainerConfig']
     end
 
     it 'should expose tftp port and only tftp port' do
