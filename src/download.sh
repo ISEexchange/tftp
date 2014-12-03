@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+function download() {
+  file=$1
+  echo -n "Download ${file}: "
+  curl -sS -L -O $file && echo OK || echo FAIL
+}
+
 function download_coreos() {
   version=$1
 
@@ -20,7 +26,7 @@ function download_coreos() {
   mkdir -p /tftpboot/coreos/$version &> /dev/null
   cd /tftpboot/coreos/$version
   for file in $coreos_files; do
-    wget $file
+    download $file
   done
 
   # Read variables so we can update F1.msg with exact version.
@@ -46,5 +52,5 @@ http://isebs.cloudapp.net/WinPE_x86.iso.md5
 
 cd /tftpboot/
 for file in $winpe; do
-  wget $file
+  download $file
 done
