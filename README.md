@@ -42,6 +42,8 @@ Test harness
       there should not be any
 
     jumanjiman/tftp
+      api version
+        should be valid
       image
         should be available
       docker
