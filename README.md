@@ -35,7 +35,7 @@ Then run:
     systemctl enable tftp.service
 
 
-Test harness
+Test harness [![wercker status](https://app.wercker.com/status/2c6904d55932575da341891675937f73/s/master "wercker status")](https://app.wercker.com/project/bykey/2c6904d55932575da341891675937f73)
 ------------
 
     contributor friction
