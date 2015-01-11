@@ -1,4 +1,6 @@
-Choose a kickstart:
+Image updated: DATE
+
+Choose a kickstart:
 
  [ safe              ] boot from local disk
  [ coreos_alpha      ] PXE-boot CoreOS Alpha

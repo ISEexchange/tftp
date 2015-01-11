@@ -9,6 +9,9 @@ ADD download.sh /
 ADD start.sh /usr/local/sbin/
 ADD tftpboot/ /tftpboot/
 
+# Show image build date in PXE menu.
+RUN sed -i "s/DATE/$(date)/g" /tftpboot/F1.msg
+
 # Work around https://bugzilla.redhat.com/show_bug.cgi?id=1066983
 RUN yum remove -y \
     vim-minimal \
