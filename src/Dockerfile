@@ -1,5 +1,5 @@
-# https://index.docker.io/u/mattdm/fedora/
-FROM fedora:20
+# https://registry.hub.docker.com/_/fedora/
+FROM fedora:21
 
 # http://jumanjiman.github.io/
 MAINTAINER Paul Morgan <jumanjiman@gmail.com>
